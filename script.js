@@ -63,10 +63,20 @@ function getData() {
 	var audioData = request.response;
 	ctx.decodeAudioData(audioData, function(buffer) {
 	    downSound = buffer;
-	    upSound = buffer;
 	}, function(e){"Error with decoding audio data" + e.err});
     }
     request.send();
+
+    var request2 = new XMLHttpRequest();
+    request2.open('GET', 'media/up.wav', true);
+    request2.responseType = 'arraybuffer';
+    request2.onload = function() {
+	var audioData = request2.response;
+	ctx.decodeAudioData(audioData, function(buffer) {
+	    upSound = buffer;
+	}, function(e){"Error with decoding audio data" + e.err});
+    }
+    request2.send();
 }
 getData()
 
