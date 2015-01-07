@@ -5,6 +5,12 @@ var editArea = document.getElementById("edit-area")
 editArea.addEventListener("keydown", keydown)
 editArea.addEventListener("keyup", keyup)
 
+if (localStorage.text)
+    editArea.innerHTML = localStorage.text
+window.addEventListener("beforeunload", function(e) {
+    localStorage.text = editArea.innerHTML
+})
+
 window.AudioContext = window.AudioContext || window.webkitAudioContext
 
 if (!window.AudioContext) {
